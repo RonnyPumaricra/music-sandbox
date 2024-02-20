@@ -2,7 +2,11 @@ import { useContext } from "react"
 import styled from "styled-components"
 import { PageIndexContext } from "../App"
 
-export function ModePagination({pageNames, subtitle, setPageIndex}) {
+export function ModePagination({
+  pageNames,
+  subtitle,
+  setPageIndex
+}) {
   
   const pageIndex = useContext(PageIndexContext)
   
@@ -12,7 +16,7 @@ export function ModePagination({pageNames, subtitle, setPageIndex}) {
     >
       <PageTitle
         $active={pageIndex == 0}
-      >{pageNames[0]}123123</PageTitle>
+      >{pageNames[0]}</PageTitle>
       <PageTitle
         $active={pageIndex == 1}
         $right

@@ -16,8 +16,8 @@ export const PageIndexContext = createContext(null)
 function App() {
   const [rootNote, setRootNote] = useState(3)
   
-  const [activeScaleDistribution, setActiveScaleDistribution] = useState(0)
-  const [activeScaleMode, setActiveScaleMode] = useState(0)
+  const [scaleDistribution, setScaleDistribution] = useState(0)
+  const [scaleMode, setScaleMode] = useState(0)
 
   const [guitarTuning, setGuitarTuning] = useState(0)
   const [guitarRootNote, setGuitarRootNote] = useState(8)
@@ -38,18 +38,18 @@ function App() {
       {/* PianoFragment can be moved inside MusicSandbox file */}
 
       <RootNoteContext.Provider value={rootNote}>
-        <ScaleDistributionContext.Provider value={activeScaleDistribution}>
-          <ScaleModeContext.Provider value={activeScaleMode}>
+        <ScaleDistributionContext.Provider value={scaleDistribution}>
+          <ScaleModeContext.Provider value={scaleMode}>
 
           <MusicSandbox
             setRootNote={setRootNote}
-            setActiveScaleDistribution={setActiveScaleDistribution}
-            setActiveScaleMode={setActiveScaleMode}
+            setScaleDistribution={setScaleDistribution}
+            setScaleMode={setScaleMode}
           >
             <PianoFragment
               setRootNote={setRootNote}
-              setActiveScaleDistribution={setActiveScaleDistribution}
-              setActiveScaleMode={setActiveScaleMode}
+              setScaleDistribution={setScaleDistribution}
+              setScaleMode={setScaleMode}
             />
           </MusicSandbox>
 
