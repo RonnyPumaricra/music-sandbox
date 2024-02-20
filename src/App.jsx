@@ -14,7 +14,7 @@ export const GuitarRootNoteContext = createContext(null)
 export const PageIndexContext = createContext(null)
 
 function App() {
-  const [rootNote, setRootNote] = useState(3)
+  const [rootNote, setRootNote] = useState(0)
   
   const [scaleDistribution, setScaleDistribution] = useState(0)
   const [scaleMode, setScaleMode] = useState(0)

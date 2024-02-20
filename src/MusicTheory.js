@@ -1,5 +1,5 @@
 export const chromaticNotes = [
-  "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"
+  "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
 ]
 export const musicKeys = [
   {
@@ -35,3 +35,7 @@ export const guitarTunings = [
     distribution: [0, 7, 0, 5, 9, 2],
   }
 ]
+
+export function isWhiteNote(noteIndex) {
+  return [0,2,4,5,7,9,11].some(i => i === noteIndex)
+}
