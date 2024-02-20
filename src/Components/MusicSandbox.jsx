@@ -1,3 +1,24 @@
-export function MusicSandbox() {
+import { useContext } from "react";
+import { ChordsSandbox } from "./ChordsSandbox";
+import { ScalesSandbox } from "./ScalesSandbox";
+import { PageIndexContext, RootNoteContext, ScaleDistributionContext, ScaleModeContext } from "../App";
 
+export function MusicSandbox({  
+  setRootNote,
+  setActiveScaleDistribution,
+  setActiveScaleMode,
+  
+  children
+}) {
+
+  const pageIndex = useContext(PageIndexContext)
+  const rootNote = useContext(RootNoteContext)
+  const scaleDistribution = useContext(ScaleDistributionContext)
+  const scaleMode = useContext(ScaleModeContext)
+
+  return <div>
+    <ScalesSandbox />
+    {children}
+    <ChordsSandbox />
+  </div>
 }

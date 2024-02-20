@@ -1,17 +1,22 @@
+import { useContext } from "react"
 import styled from "styled-components"
+import { PageIndexContext } from "../App"
 
-export function ModePagination({pages, subtitle, pageIndex, setPageIndex}) {
+export function ModePagination({pageNames, subtitle, setPageIndex}) {
+  
+  const pageIndex = useContext(PageIndexContext)
+  
   return <div>
     <TitleOverlap
       onClick={() => setPageIndex(pageIndex ? 0 : 1)}
     >
       <PageTitle
         $active={pageIndex == 0}
-      >{pages[0]}123123</PageTitle>
+      >{pageNames[0]}123123</PageTitle>
       <PageTitle
         $active={pageIndex == 1}
         $right
-      >{pages[1]}</PageTitle>
+      >{pageNames[1]}</PageTitle>
     </TitleOverlap>
     <div className="bar"></div>
     <Subtitle
@@ -32,10 +37,7 @@ const TitleOverlap = styled.div`
 `
 
 const PageTitle = styled.h2`
-  --x-translate: ${props => {
-    console.log("Rewritten")
-    return props.$right ? "-200px" : "200px"
-  }};
+  --x-translate: ${props => props.$right ? "-200px" : "200px"};
   width: fit-content;
   /* background: skyblue; */
   position: relative;
