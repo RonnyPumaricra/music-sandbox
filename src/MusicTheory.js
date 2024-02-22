@@ -25,6 +25,29 @@ export const musicKeys = [
   },
 ]
 
+export const musicChords = [
+  {
+    name: "Major",
+    distribution: [0, 4, 7],
+    abbr: root => root,
+  },
+  {
+    name: "Minor",
+    distribution: [0, 3, 7],
+    abbr: root => root + "m",
+  },
+  {
+    name: "Diminished",
+    distribution: [0, 3, 6],
+    abbr: root => root +  "dim",
+  },
+  {
+    name: "Augmented",
+    distribution: [0, 4, 8],
+    abbr: root => root +  "+",
+  },
+]
+
 export const guitarTunings = [
   {
     name: "Standard",

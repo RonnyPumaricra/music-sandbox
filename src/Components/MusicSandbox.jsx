@@ -7,7 +7,7 @@ export function MusicSandbox({
   setRootNote,
   setScaleDistribution,
   setScaleMode,
-  
+  setChord,
   children
 }) {
 
@@ -23,6 +23,8 @@ export function MusicSandbox({
       setScaleMode={setScaleMode}
     />
     {children}
-    <ChordsSandbox />
+    <ChordsSandbox
+      setChord={setChord}
+    />
   </div>
 }
