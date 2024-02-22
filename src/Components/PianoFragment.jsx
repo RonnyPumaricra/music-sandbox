@@ -1,7 +1,16 @@
 import { useContext } from "react"
 import styled from "styled-components"
 import { RootNoteContext, ScaleDistributionContext, ScaleModeContext } from "../App"
-import { isWhiteNote, musicKeys } from "../MusicTheory"
+import { chromaticNotes, isWhiteNote, musicKeys } from "../MusicTheory"
+
+function PianoWhiteKey({
+  chromaticNote,
+  ...delegated
+}) {
+  return <StyledWhiteKey {...delegated}>
+    <NoteName>{chromaticNotes[chromaticNote]}</NoteName>
+  </StyledWhiteKey>
+}
 
 export function PianoFragment({setRootNote}) {
 
@@ -35,6 +44,7 @@ export function PianoFragment({setRootNote}) {
           onClick={() => setRootNote(el.chromaticNote)}
           $highlighted={el.isHighlighted}
           $rootNote={el.isRootNote}
+          chromaticNote={el.chromaticNote}
         />
       })
     }
@@ -46,15 +56,22 @@ const PianoWrapper = styled.div`
   margin-top: 3rem;
 `
 
-const PianoWhiteKey = styled.div`
+const StyledWhiteKey = styled.div`
   width: 3rem;
   height: 10rem;
   border: 1px solid gray;
   background: ${p => p.$rootNote ? "magenta" : p.$highlighted ? "pink": "white"};
 
+  display: flex;
+  justify-content: center;
+  align-items: end;
+
   z-index: 1;
 `
 
+const NoteName = styled.span`
+
+`
 
 const PianoBlackKey = styled.div`
   --width: 1.5rem;
