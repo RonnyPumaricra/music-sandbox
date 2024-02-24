@@ -6,10 +6,11 @@ import { MusicSandbox } from "./Components/MusicSandbox"
 import { GuitarFragment } from "./Components/GuitarFragment"
 import { createContext } from "react"
 
-export const RootNoteContext = createContext(null)
+export const ScaleRootNoteContext = createContext(null)
 export const ScaleDistributionContext = createContext(null)
 export const ScaleModeContext = createContext(null)
-export const ChordContext = createContext(null)
+export const ChordDistributionContext = createContext(null)
+export const ChordRootNoteContext = createContext(null)
 // export const ChordExtraNotesContext = createContext(null)
 
 export const GuitarTuningContext = createContext(null)
@@ -17,12 +18,13 @@ export const GuitarRootNoteContext = createContext(null)
 export const PageIndexContext = createContext(null)
 
 function App() {
-  const [rootNote, setRootNote] = useState(0)
+  const [scaleRootNote, setScaleRootNote] = useState(0)
   
   const [scaleDistribution, setScaleDistribution] = useState(0)
   const [scaleMode, setScaleMode] = useState(0)
 
-  const [chord, setChord] = useState(0)
+  const [chordRootNote, setChordRootNote] = useState(0)
+  const [chordDistribution, setChordDistribution] = useState(0)
   // const [chordExtraNotes, setChordExtraNotes] = useState([])
 
   const [guitarTuning, setGuitarTuning] = useState(0)
@@ -43,22 +45,24 @@ function App() {
   
       {/* PianoFragment can be moved inside MusicSandbox file */}
 
-      <RootNoteContext.Provider value={rootNote}>
+      <ScaleRootNoteContext.Provider value={scaleRootNote}>
         <ScaleDistributionContext.Provider value={scaleDistribution}>
           <ScaleModeContext.Provider value={scaleMode}>
-            <ChordContext.Provider value={chord}>
+            <ChordDistributionContext.Provider value={chordDistribution}>
+              <ChordRootNoteContext.Provider value={chordRootNote}>
 
 
               <MusicSandbox
-                setRootNote={setRootNote}
+                setRootNote={setScaleRootNote}
                 setScaleDistribution={setScaleDistribution}
                 setScaleMode={setScaleMode}
-                setChord={setChord}
+                setChord={setChordDistribution}
               >
                 <PianoFragment
-                  setRootNote={setRootNote}
+                  setScaleRootNote={setScaleRootNote}
                   setScaleDistribution={setScaleDistribution}
                   setScaleMode={setScaleMode}
+                  setChordRootNote={setChordRootNote}
                 />
               </MusicSandbox>
 
@@ -77,11 +81,12 @@ function App() {
               </GuitarTuningContext.Provider>
 
 
-            </ChordContext.Provider>
+              </ChordRootNoteContext.Provider>
+            </ChordDistributionContext.Provider>
           </ScaleModeContext.Provider>
 
         </ScaleDistributionContext.Provider>
-      </RootNoteContext.Provider>
+      </ScaleRootNoteContext.Provider>
 
     </PageIndexContext.Provider>
 

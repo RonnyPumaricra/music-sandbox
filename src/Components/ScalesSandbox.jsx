@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import styled from "styled-components"
-import { RootNoteContext, ScaleDistributionContext, ScaleModeContext } from "../App"
+import { ScaleRootNoteContext, ScaleDistributionContext, ScaleModeContext } from "../App"
 import { chromaticNotes, musicKeys } from "../MusicTheory"
 
 export function ScalesSandbox({
@@ -10,7 +10,7 @@ export function ScalesSandbox({
 
 }) {
   
-  const rootNote = useContext(RootNoteContext)
+  const rootNote = useContext(ScaleRootNoteContext)
   const scaleDistribution = useContext(ScaleDistributionContext)
   const scaleMode = useContext(ScaleModeContext)
 

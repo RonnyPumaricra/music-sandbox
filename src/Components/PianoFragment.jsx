@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import styled from "styled-components"
-import { RootNoteContext, ScaleDistributionContext, ScaleModeContext } from "../App"
-import { chromaticNotes, isWhiteNote, musicKeys } from "../MusicTheory"
+import { ChordDistributionContext, ChordRootNoteContext, PageIndexContext, ScaleRootNoteContext, ScaleDistributionContext, ScaleModeContext } from "../App"
+import { chromaticNotes, isWhiteNote, musicChords, musicKeys } from "../MusicTheory"
 
 function PianoWhiteKey({
   chromaticNote,
@@ -12,27 +12,50 @@ function PianoWhiteKey({
   </StyledWhiteKey>
 }
 
-export function PianoFragment({setRootNote}) {
+export function PianoFragment({
+  setScaleRootNote,
+  setChordRootNote
+}) {
 
-  const rootNote = useContext(RootNoteContext)
+  const pageIndex = useContext(PageIndexContext)
+  const rootNote = useContext(ScaleRootNoteContext)
   const scaleDistribution = useContext(ScaleDistributionContext)
   const scaleMode = useContext(ScaleModeContext)
+  const chordDistribution = useContext(ChordDistributionContext)
+  const chordRootNote = useContext(ChordRootNoteContext)
 
-  const distribution = musicKeys[scaleDistribution].distribution
-  const moddedDistribution = distribution.map((el) => {
-    let newRootNote = distribution[scaleMode]
-    return (el - newRootNote + 12) % 12
-  })
 
   let pianoKeys = []
 
-  for (let i = 0; i < 12; i++) {
-    pianoKeys[i] = {}
-    pianoKeys[i].isWhite = isWhiteNote((rootNote + i) % 12)
-    pianoKeys[i].isHighlighted = moddedDistribution.some((el) => el === i)
-    pianoKeys[i].isRootNote = i === 0
-    pianoKeys[i].chromaticNote = (rootNote + i) % 12
+  if (pageIndex === 0) {
+
+    const distribution = musicKeys[scaleDistribution].distribution
+    const moddedDistribution = distribution.map((el) => {
+      let newRootNote = distribution[scaleMode]
+      return (el - newRootNote + 12) % 12
+    })
+
+    for (let i = 0; i < 12; i++) {
+      pianoKeys[i] = {}
+      pianoKeys[i].isWhite = isWhiteNote((rootNote + i) % 12)
+      pianoKeys[i].isHighlighted = moddedDistribution.some((el) => el === i)
+      pianoKeys[i].isRootNote = i === 0
+      pianoKeys[i].chromaticNote = (rootNote + i) % 12
+    }
+  } else {
+    const currentChordDistribution = musicChords[chordDistribution].distribution
+
+    for (let i = 0; i < 12; i++) {
+      pianoKeys[i] = {}
+      pianoKeys[i].isWhite = isWhiteNote((chordRootNote + i) % 12)
+      pianoKeys[i].isHighlighted = currentChordDistribution.some((el) => el === i)
+      pianoKeys[i].isRootNote = i === 0
+      // pianoKeys[i].isRootNote = i === chordRootNote
+      pianoKeys[i].chromaticNote = (chordRootNote + i) % 12
+    }
   }
+
+
 
   return <PianoWrapper>
     {
@@ -41,7 +64,10 @@ export function PianoFragment({setRootNote}) {
 
         return <PianoKey
           key={i}
-          onClick={() => setRootNote(el.chromaticNote)}
+          onClick={() => {
+            if (pageIndex == 0) setScaleRootNote(el.chromaticNote)
+            else setChordRootNote(el.chromaticNote)
+          }}
           $highlighted={el.isHighlighted}
           $rootNote={el.isRootNote}
           chromaticNote={el.chromaticNote}
@@ -67,6 +93,8 @@ const StyledWhiteKey = styled.div`
   align-items: end;
 
   z-index: 1;
+
+  transition: background 500ms;
 `
 
 const NoteName = styled.span`
