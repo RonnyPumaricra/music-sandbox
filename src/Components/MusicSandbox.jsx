@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { ChordsSandbox } from "./ChordsSandbox";
 import { ScalesSandbox } from "./ScalesSandbox";
-// import { PageIndexContext, RootNoteContext, ScaleDistributionContext, ScaleModeContext } from "../App";
+import styled from "styled-components";
+import { PageIndexContext } from "../App";
 
 export function MusicSandbox({  
   setRootNote,
@@ -11,12 +12,12 @@ export function MusicSandbox({
   children
 }) {
 
-  // const pageIndex = useContext(PageIndexContext)
+  const pageIndex = useContext(PageIndexContext)
   // const rootNote = useContext(RootNoteContext)
   // const scaleDistribution = useContext(ScaleDistributionContext)
   // const scaleMode = useContext(ScaleModeContext)
 
-  return <div>
+  return <Wrapper $index={pageIndex}>
     <ScalesSandbox
       setRootNote={setRootNote}
       setScaleDistribution={setScaleDistribution}
@@ -26,5 +27,11 @@ export function MusicSandbox({
     <ChordsSandbox
       setChord={setChord}
     />
-  </div>
+  </Wrapper>
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  translate: ${p => p.$index * -300 + "px"} 0;
+  transition: translate 200ms;
+`

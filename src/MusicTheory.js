@@ -16,6 +16,26 @@ export const musicKeys = [
     ]
   },
   {
+    distribution: [0, 2, 3, 5, 7, 8, 11],
+    modes: [
+      "Harmonic Minor",
+      null,
+      null,
+      null,
+      "Phrygian Dominant",
+    ]
+  },
+  {
+    distribution: [0, 2, 4, 7, 9],
+    modes: [
+      "Major Pentatonic",
+      null,
+      null,
+      null,
+      "Minor Pentatonic",
+    ]
+  },
+  {
     // leadingKey: "Blues Minor",
     distribution: [0, 3, 5, 6, 7, 10],
     modes: [

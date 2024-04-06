@@ -80,6 +80,11 @@ export function PianoFragment({
 const PianoWrapper = styled.div`
   display: flex;
   margin-top: 3rem;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  /* flex: 1; */
 `
 
 const StyledWhiteKey = styled.div`

@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import styled from "styled-components"
-import { ScaleRootNoteContext, ScaleDistributionContext, ScaleModeContext } from "../App"
+import { ScaleRootNoteContext, ScaleDistributionContext, ScaleModeContext, PageIndexContext } from "../App"
 import { chromaticNotes, musicKeys } from "../MusicTheory"
 
 export function ScalesSandbox({
@@ -10,6 +10,7 @@ export function ScalesSandbox({
 
 }) {
   
+  const pageIndex = useContext(PageIndexContext)
   const rootNote = useContext(ScaleRootNoteContext)
   const scaleDistribution = useContext(ScaleDistributionContext)
   const scaleMode = useContext(ScaleModeContext)
@@ -33,7 +34,7 @@ export function ScalesSandbox({
     setScaleMode(0)
   }
   
-  return <div>
+  return <Wrapper $active={pageIndex === 0}>
     <RootNote>
       {chromaticNotes[rootNote]}
     </RootNote>
@@ -75,8 +76,15 @@ export function ScalesSandbox({
     </div>
 
 
-  </div>
+  </Wrapper>
 }
+
+const Wrapper = styled.div`
+  background: tomato;
+  width: 300px;
+  /* margin-left: {p => p.$active ? "0" : "-300px"}; */
+`
+
 
 const RootNote = styled.div`
   font-size: 5rem;

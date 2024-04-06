@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { chromaticNotes, musicChords } from "../MusicTheory"
-import { ChordDistributionContext, ChordRootNoteContext } from "../App"
+import { ChordDistributionContext, ChordRootNoteContext, PageIndexContext } from "../App"
 import styled from "styled-components"
 
 export function ChordsSandbox({
@@ -8,12 +8,14 @@ export function ChordsSandbox({
   setChordExtraNotes,
 }) {
 
+  const pageIndex = useContext(PageIndexContext)
+
   const chordRootNote = useContext(ChordRootNoteContext)
   const chordDistribution = useContext(ChordDistributionContext)
 
   const currentChord = musicChords[chordDistribution]
 
-  return <div>
+  return <Wrapper $active={pageIndex === 1}>
     <RootNote>
       {chromaticNotes[chordRootNote]}
     </RootNote>
@@ -30,8 +32,16 @@ export function ChordsSandbox({
     >
       Next Chord
     </Next>
-  </div>
+  </Wrapper>
 }
+
+const Wrapper = styled.div`
+  background: tomato;
+  width: 300px;
+  /* margin-right: {p => p.$active ? "0" : "-300px"}; */
+  margin-right: -300px;
+`
+
 
 
 const RootNote = styled.div`
