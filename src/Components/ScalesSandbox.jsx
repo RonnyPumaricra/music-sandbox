@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import styled from "styled-components"
 import { ScaleRootNoteContext, ScaleDistributionContext, ScaleModeContext, PageIndexContext } from "../App"
-import { chromaticNotes, musicKeys } from "../MusicTheory"
+import { chromaticNotes, musicKeys } from "./music/MusicTheory"
 
 export function ScalesSandbox({
   setScaleMode,

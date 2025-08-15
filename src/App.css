@@ -1,0 +1,9 @@
+#root {
+  display: grid;
+  padding-top: 32px;
+  grid-template-columns: 60px 1fr 60px;
+}
+
+#root * {
+  grid-column-start: 2;
+}

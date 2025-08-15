@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { chromaticNotes, musicChords } from "../MusicTheory"
+import { chromaticNotes, musicChords } from "./music/MusicTheory"
 import { ChordDistributionContext, ChordRootNoteContext, PageIndexContext } from "../App"
 import styled from "styled-components"
 

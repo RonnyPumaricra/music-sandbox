@@ -3,26 +3,29 @@ export const chromaticNotes = [
 ]
 export const musicKeys = [
   {
-    // leadingKey: "Major",
+    leadingKey: "Diatonic Scale",
     distribution: [0, 2, 4, 5, 7, 9, 11],
     modes: [
-      "Major (Ionian)",
+      "Ionian  (Major)",
       "Dorian",
-      "Phrygian",
+      "Phrygian", 
       "Lydian",
       "Mixolydian",
-      "Minor (Aeolian)",
+      "Aeolian (Minor)",
       "Locrian"
     ]
   },
   {
+
     distribution: [0, 2, 3, 5, 7, 8, 11],
     modes: [
       "Harmonic Minor",
       null,
-      null,
+      "Augmented Major",
       null,
       "Phrygian Dominant",
+      null,
+      null
     ]
   },
   {

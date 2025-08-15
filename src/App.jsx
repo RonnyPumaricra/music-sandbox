@@ -5,6 +5,9 @@ import { ModePagination } from "./Components/ModePagination"
 import { MusicSandbox } from "./Components/MusicSandbox"
 import { GuitarFragment } from "./Components/GuitarFragment"
 import { createContext } from "react"
+import { ScalesWrapper } from "./Components/Scales/ScalesWrapper"
+import styled from "styled-components"
+import { ChordsWrapper } from "./Components/Chords/ChordsWrapper"
 
 export const ScaleRootNoteContext = createContext(null)
 export const ScaleDistributionContext = createContext(null)
@@ -37,12 +40,40 @@ function App() {
 
   return <>
     <PageIndexContext.Provider value={pageIndex}>
-      <ModePagination
+      {/* <ModePagination
         pageNames={["Scales", "Chords"]}
         subtitle="MUSIC SANDBOX"
         setPageIndex={setPageIndex}
-      />
+      /> */}
   
+      <StyledScalesChordsWrapper>
+        <ScaleRootNoteContext.Provider value={scaleRootNote}>
+          <ScaleDistributionContext.Provider value={scaleDistribution}>
+            <ScaleModeContext.Provider value={scaleMode}>
+              <ChordDistributionContext.Provider value={chordDistribution}>
+                <ChordRootNoteContext.Provider value={chordRootNote}>
+
+            <ScalesWrapper
+              setScaleRootNote={setScaleRootNote}
+              setScaleDistribution={setScaleDistribution}
+              setScaleMode={setScaleMode}
+            />
+            <PianoFragment
+              setScaleRootNote={setScaleRootNote}
+              setScaleDistribution={setScaleDistribution}
+              setScaleMode={setScaleMode}
+              setChordRootNote={setChordRootNote}
+            />
+            <ChordsWrapper />
+
+                </ChordRootNoteContext.Provider>
+              </ChordDistributionContext.Provider>
+            </ScaleModeContext.Provider>
+          </ScaleDistributionContext.Provider>
+        </ScaleRootNoteContext.Provider>
+
+      </StyledScalesChordsWrapper>
+
       {/* PianoFragment can be moved inside MusicSandbox file */}
 
       <ScaleRootNoteContext.Provider value={scaleRootNote}>
@@ -52,7 +83,7 @@ function App() {
               <ChordRootNoteContext.Provider value={chordRootNote}>
 
 
-              <MusicSandbox
+              {/* <MusicSandbox
                 setRootNote={setScaleRootNote}
                 setScaleDistribution={setScaleDistribution}
                 setScaleMode={setScaleMode}
@@ -64,18 +95,18 @@ function App() {
                   setScaleMode={setScaleMode}
                   setChordRootNote={setChordRootNote}
                 />
-              </MusicSandbox>
+              </MusicSandbox> */}
 
               {/* Guitar */}
               <GuitarTuningContext.Provider value={guitarTuning}>
                 <GuitarRootNoteContext.Provider value={guitarRootNote}>
 
-                  <GuitarFragment
+                  {/* <GuitarFragment
                     setGuitarRootNote={setGuitarRootNote}
                     setGuitarTuning={setGuitarTuning}
 
                     activeNotes={[3]}
-                  />
+                  /> */}
 
                 </GuitarRootNoteContext.Provider>
               </GuitarTuningContext.Provider>
@@ -92,5 +123,9 @@ function App() {
 
   </>
 }
+
+const StyledScalesChordsWrapper = styled.div`
+  display: flex;
+`
 
 export default App
